@@ -1,0 +1,41 @@
+{
+  "name": "rbotlinker-api",
+  "version": "1.0.0",
+  "description": "A simple IoT platform -API",
+  "private": false,
+  "main": "server.js",
+  "scripts": {
+    "test": "DEBUG=rbotlinker:* ava tests/ --verbose",
+    "start": "NODE_ENV=production node server.js",
+    "start-dev": "DEBUG=rbotlinker:* nodemon server.js",
+    "lint": "standard"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MrRomo/rbotlinker.git"
+  },
+  "author": "Ricardo <jricardoromo21@gmail.com> (https://twitter.com/JRicardo_Romo)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MrRomo/rbotlinker/issues"
+  },
+  "homepage": "https://github.com/MrRomo/rbotlinker#readme",
+  "devDependencies": {
+    "ava": "^0.25.0",
+    "nodemon": "^1.18.3",
+    "proxyquire": "^2.0.1",
+    "sinon": "^6.1.4",
+    "standard": "^11.0.1",
+    "supertest": "^3.1.0"
+  },
+  "dependencies": {
+    "chalk": "^2.4.1",
+    "debug": "^3.1.0",
+    "express": "^4.16.3",
+    "express-asyncify": "^1.0.0",
+    "express-jwt": "^5.3.1",
+    "express-jwt-permissions": "^1.2.1",
+    "jsonwebtoken": "^8.3.0",
+    "rbotlinker-db": "file:../rbotlinker-db"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "name": "rbotlinker-agent",
+  "version": "1.0.0",
+  "description": "A simple IoT platform - agent",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "standard"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/MrRomo/rbotlinker.git"
+  },
+  "author": "Ricardo <jricardoromo21@gmail.com> (https://twitter.com/JRicardo_Romo)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MrRomo/rbotlinker/issues"
+  },
+  "homepage": "https://github.com/MrRomo/rbotlinker#readme",
+  "devDependencies": {
+    "standard": "^11.0.1"
+  },
+  "dependencies": {
+    "debug": "^3.1.0",
+    "default": "^0.1.1",
+    "defaults": "^1.0.3",
+    "mqtt": "^2.18.3",
+    "uuid": "^3.3.2"
+  }
+}
