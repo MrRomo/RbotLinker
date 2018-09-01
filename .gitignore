@@ -33,12 +33,12 @@ bower_components
 build/Release
 
 # Dependency directories
-rbotlinker-agent/node_modules/*
-rbotlinker-db/node_modules/*
-rbotlinker-api/node_modules/*
-rbotlinker-deploy/node_modules/*
-rbotlinker-web/node_modules/*
-rbotlinker-mqtt/node_modules/*
+/rbotlinker-agent/node_modules/*
+/rbotlinker-db/node_modules/*
+/rbotlinker-api/node_modules/*
+/rbotlinker-deploy/node_modules/*
+/rbotlinker-web/node_modules/*
+/rbotlinker-mqtt/node_modules/*
 node_modules/
 jspm_packages/
 
