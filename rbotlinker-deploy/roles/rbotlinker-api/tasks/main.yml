@@ -1,0 +1,28 @@
+---
+- include: deps.yml
+- name: Copying rbotlinker-api
+  copy:
+    src=rbotlinker-api
+    dest=/usr/local/src
+    mode=u=rwx,g=rwx,o=rx
+- name: Running npm install
+  command: npm install
+    chdir=/usr/local/src/rbotlinker-api
+    creates=/usr/local/src/rbotlinker-api/node_modules
+- name: Install systemd script
+  copy:
+    src=rbotlinker-api.service
+    dest=/lib/systemd/system
+- name: Install nginx config
+  copy:
+    src=rbotlinker-api.conf
+    dest=/etc/nginx/sites-enabled
+- name: Start rbotlinker-api
+  service:
+    name=rbotlinker-api
+    state=restarted
+    enabled=yes
+- name: Restart nginx
+  service:
+    name=nginx
+    state=reloaded

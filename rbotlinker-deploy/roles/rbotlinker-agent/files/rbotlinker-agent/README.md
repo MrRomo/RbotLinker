@@ -1,15 +1,14 @@
+# rbotlinker-agent
 
+## Usage
 
-const RbotAgent = require('../')
+``` js
+const RbotAgent = require('rbotlinker-agent')
 
 const agent = new RbotAgent({
-  name: 'Agente test',
+  name: 'myapp',
   username: 'admin',
-  interval: 200,
-  mqtt: {
-    host: 'mqtt://api.ricardoromo.co'
-//    host: 'mqtt://localhost'
-  }
+  interval: 2000
 })
 
 agent.addMetric('rss', function getRss () {
@@ -17,7 +16,7 @@ agent.addMetric('rss', function getRss () {
 })
 
 agent.addMetric('promiseMetric', function getRandomPromise () {
-  return Promise.resolve(Math.random()*20)
+  return Promise.resolve(Math.random())
 })
 
 agent.addMetric('callbackMetric', function getRandomCallback (callback) {
@@ -42,4 +41,5 @@ function handler (payload) {
   console.log(payload)
 }
 
-//setTimeout(() => agent.disconnect(), 20000)
+setTimeout(() => agent.disconnect(), 20000)
+```

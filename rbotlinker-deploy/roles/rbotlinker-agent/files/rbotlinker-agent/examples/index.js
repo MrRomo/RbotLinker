@@ -8,7 +8,6 @@ const agent = new RbotAgent({
   interval: 200,
   mqtt: {
     host: 'mqtt://api.ricardoromo.co'
-//    host: 'mqtt://localhost'
   }
 })
 

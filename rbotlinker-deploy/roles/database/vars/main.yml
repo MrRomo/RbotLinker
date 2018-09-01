@@ -1,0 +1,12 @@
+postgresql_databases:
+  - name: rbotlinker
+    owner: rbotlinker
+    hstore: yes
+postgresql_users:
+  - name: rbotlinker
+    pass: rbotlinker
+    encrypted: no
+postgresql_user_privileges:
+  - name: rbotlinker
+    db: rbotlinker
+    priv: "ALL"

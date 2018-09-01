@@ -1,0 +1,14 @@
+---
+- include: deps.yml
+- name: Copy rbotlinker-db
+  copy:
+    src=rbotlinker-db
+    dest=/usr/local/src
+    mode=u=rwx,g=rwx,o=rx
+- name: Run npm install
+  command: npm install
+    chdir=/usr/local/src/rbotlinker-db
+    creates=/usr/local/src/rbotlinker-db/node_modules
+- name: Setup Database
+  command: npm run setup -- --yes
+    chdir=/usr/local/src/rbotlinker-db

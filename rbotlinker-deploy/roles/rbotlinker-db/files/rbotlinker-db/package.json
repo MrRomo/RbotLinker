@@ -1,0 +1,38 @@
+{
+  "name": "rbotlinker-db",
+  "version": "1.0.0",
+  "description": "A Simple IoT Platform - DB Module",
+  "main": "index.js",
+  "scripts": {
+    "test": "DEBUG=rbotlinker:* nyc --reporter=lcov ava tests/ --verbose",
+    "setup": "DEBUG=rbotlinker:* node setup.js",
+    "lint": "standard"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mrromo/rbotlinker.git"
+  },
+  "author": "Ricardo Romo <jricardoromo21@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mrromo/rbotlinker/issues"
+  },
+  "homepage": "https://github.com/mrromo/rbotlinker#readme",
+  "devDependencies": {
+    "ava": "^0.21.0",
+    "nyc": "^11.1.0",
+    "proxyquire": "^1.8.0",
+    "sinon": "^6.1.5",
+    "sqlite3": "^4.0.2",
+    "standard": "^10.0.3"
+  },
+  "dependencies": {
+    "chalk": "^2.1.0",
+    "debug": "^2.6.8",
+    "defaults": "^1.0.3",
+    "inquirer": "^3.2.1",
+    "pg": "^7.1.0",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^4.4.2"
+  }
+}

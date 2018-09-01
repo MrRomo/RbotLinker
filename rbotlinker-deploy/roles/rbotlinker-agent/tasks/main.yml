@@ -1,0 +1,11 @@
+---
+- include: deps.yml
+- name: Copy rbotlinker-agent
+  copy:
+    src=rbotlinker-agent
+    dest=/usr/local/src
+    mode=u=rwx,g=rwx,o=rx
+- name: Run npm install
+  command: npm install
+    chdir=/usr/local/src/rbotlinker-agent
+    creates=/usr/local/src/rbotlinker-agent/node_modules

@@ -1,0 +1,20 @@
+---
+- include: deps.yml
+- name: Copying rbotlinker-mqtt
+  copy:
+    src=rbotlinker-mqtt
+    dest=/usr/local/src
+    mode=u=rwx,g=rwx,o=rx
+- name: Running npm install
+  command: npm install
+    chdir=/usr/local/src/rbotlinker-mqtt
+    creates=/usr/local/src/rbotlinker-mqtt/node_modules
+- name: Install systemd script
+  copy:
+    src=rbotlinker-mqtt.service
+    dest=/lib/systemd/system
+- name: Start rbotlinker-mqtt
+  service:
+    name=rbotlinker-mqtt
+    state=restarted
+    enabled=yes
