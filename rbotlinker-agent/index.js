@@ -1,6 +1,3 @@
-'use strict'
-
-const debug = require('debug')('rbotlinker:agent')
 const os = require('os')
 const util = require('util')
 const mqtt = require('mqtt')
@@ -79,7 +76,7 @@ class RbotlinkerAgent extends EventEmitter {
               })
             }
 
-            debug('Sending', message)
+            ('Sending', message)
 
             this._client.publish('agent/message', JSON.stringify(message))
             this.emit('message', message)

@@ -1,21 +1,18 @@
-'use strict'
+import express from 'express'
+import asyncify from 'express-asyncify'
+import auth from 'express-jwt'
+import guard from 'express-jwt-permissions'
+import db from 'rbotlinker-db'
+import config from './config.js'
 
-const debug = require('debug')('rbotlinker:api:routes')
-const express = require('express')
-const asyncify = require('express-asyncify')
-const auth = require('express-jwt')
-const guard = require('express-jwt-permissions')()
-const db = require('rbotlinker-db')
-
-const config = require('./config')
-
+const guardP = guard()
 const api = asyncify(express.Router())
 
 let services, Agent, Metric
 
 api.use('*', async (req, res, next) => {
   if (!services) {
-    debug('Connecting to database')
+    console.log('Connecting to database')
     try {
       services = await db(config.db)
     } catch (e) {
@@ -29,7 +26,7 @@ api.use('*', async (req, res, next) => {
 })
 
 api.get('/agents', auth(config.auth), async (req, res, next) => {
-  debug('A request has come to /agents')
+  console.log('A request has come to /agents')
 
   const { user } = req
 
@@ -54,7 +51,7 @@ api.get('/agents', auth(config.auth), async (req, res, next) => {
 api.get('/agent/:uuid', async (req, res, next) => {
   const { uuid } = req.params
 
-  debug(`request to /agent/${uuid}`)
+  console.log(`request to /agent/${uuid}`)
 
   let agent
   try {
@@ -70,10 +67,10 @@ api.get('/agent/:uuid', async (req, res, next) => {
   res.send(agent)
 })
 
-api.get('/metrics/:uuid', auth(config.auth), guard.check(['metrics:read']), async (req, res, next) => {
+api.get('/metrics/:uuid', auth(config.auth), guardP.check(['metrics:read']), async (req, res, next) => {
   const { uuid } = req.params
 
-  debug(`request to /metrics/${uuid}`)
+  console.log(`request to /metrics/${uuid}`)
 
   let metrics = []
   try {
@@ -92,7 +89,7 @@ api.get('/metrics/:uuid', auth(config.auth), guard.check(['metrics:read']), asyn
 api.get('/metrics/:uuid/:type', async (req, res, next) => {
   const { uuid, type } = req.params
 
-  debug(`request to /metrics/${uuid}/${type}`)
+  console.log(`request to /metrics/${uuid}/${type}`)
 
   let metrics = []
   try {
@@ -108,4 +105,4 @@ api.get('/metrics/:uuid/:type', async (req, res, next) => {
   res.send(metrics)
 })
 
-module.exports = api
+export default api

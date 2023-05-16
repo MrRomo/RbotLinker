@@ -1,5 +1,3 @@
-'use strict'
-
 const agent = {
   id: 1,
   uuid: 'yyy-yyy-yyy',
@@ -24,7 +22,7 @@ function extend (obj, values) {
   return Object.assign(clone, values)
 }
 
-module.exports = {
+export default {
   single: agent,
   all: agents,
   connected: agents.filter(a => a.connected),

@@ -10,6 +10,7 @@
     "start-dev": "DEBUG=rbotlinker:* nodemon server.js",
     "lint": "standard"
   },
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/MrRomo/rbotlinker.git"

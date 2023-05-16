@@ -1,6 +1,4 @@
-'use strict'
-
-module.exports = function setupMetric (MetricModel, AgentModel) {
+export function setupMetric (MetricModel, AgentModel) {
   async function findByAgentUuid (uuid) {
     return MetricModel.findAll({
       attributes: [ 'type' ],

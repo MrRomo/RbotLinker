@@ -1,17 +1,12 @@
-'use strict'
-
-const debug = require('debug')('rbotlinker:api:db')
-
-module.exports = {
+export default {
   db: {
-    database: process.env.DB_NAME || 'rbotlinker',
-    username: process.env.DB_USER || 'rbotlinker',
-    password: process.env.DB_PASS || 'rbotlinker',
+    database: process.env.DB_NAME || 'mrromo',
+    username: process.env.DB_USER || 'mrromo',
+    password: process.env.DB_PASS || 'mrromo',
     host: process.env.DB_HOST || 'localhost',
     dialect: 'postgres',
-    logging: s => debug(s)
   },
   auth: {
-    secret: process.env.SECRET || 'rbotlinker'
+    secret: process.env.SECRET || 'mrromo'
   }
 }

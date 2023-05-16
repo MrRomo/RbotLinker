@@ -1,6 +1,4 @@
-'use strict'
-
-function pipe (source, target) {
+export function pipe (source, target) {
   if (!source.emit || !target.emit) {
     throw TypeError(`Please pass EventEmitter's as argument`)
   }
@@ -14,6 +12,3 @@ function pipe (source, target) {
   }
 }
 
-module.exports = {
-  pipe
-}

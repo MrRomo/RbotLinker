@@ -1,13 +1,11 @@
-'use strict'
+import { setupDatabase } from './lib/db.js'
+import { setupAgentModel } from './models/agent.js'
+import { setupMetricModel } from './models/metric.js'
+import { setupAgent } from './lib/agent.js'
+import { setupMetric } from './lib/metric.js'
+import defaults from 'defaults'
 
-const setupDatabase = require('./lib/db')
-const setupAgentModel = require('./models/agent')
-const setupMetricModel = require('./models/metric')
-const setupAgent = require('./lib/agent')
-const setupMetric = require('./lib/metric')
-const defaults = require('defaults')
-
-module.exports = async function (config) {
+export default async function (config) {
   config = defaults(config, {
     dialect: 'sqlite',
     pool: {

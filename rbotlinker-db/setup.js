@@ -1,11 +1,8 @@
-'use strict'
+import { createPromptModule } from 'inquirer'
+import chalk from 'chalk'
+import db from './index.js'
 
-const debug = require('debug')('rbotlinker:db:setup')
-const inquirer = require('inquirer')
-const chalk = require('chalk')
-const db = require('./')
-
-const prompt = inquirer.createPromptModule()
+const prompt = createPromptModule()
 
 async function setup () {
   const answer = await prompt([
@@ -21,12 +18,11 @@ async function setup () {
   }
 
   const config = {
-    database: process.env.DB_NAME || 'rbotlinker',
-    username: process.env.DB_USER || 'rbotlinker',
-    password: process.env.DB_PASS || 'rbotlinker',
+    database: process.env.DB_NAME || 'mrromo',
+    username: process.env.DB_USER || 'mrromo',
+    password: process.env.DB_PASS || 'mrromo',
     host: process.env.DB_HOST || 'localhost',
     dialect: 'postgres',
-    logging: s => debug(s),
     setup: true
   }
 

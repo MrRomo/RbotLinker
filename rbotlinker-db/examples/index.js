@@ -1,6 +1,4 @@
-'use strict'
-
-const db = require('../')
+import db from '../index.js'
 
 async function run () {
   const config = {

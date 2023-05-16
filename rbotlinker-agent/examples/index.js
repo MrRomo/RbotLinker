@@ -1,14 +1,15 @@
 
 
 const RbotAgent = require('../')
-
+//random number gen 
+const uuid = require('uuid')
 const agent = new RbotAgent({
-  name: 'Agente test',
+  name: `Agente test - ${uuid.v4()}`,
   username: 'admin',
-  interval: 200,
+  interval: 1000,
   mqtt: {
-    host: 'mqtt://api.ricardoromo.co'
-//    host: 'mqtt://localhost'
+    // host: 'mqtt://api.ricardoromo.co'
+   host: 'mqtt://localhost'
   }
 })
 

@@ -1,6 +1,4 @@
-'use strict'
-
-module.exports = function setupAgent (AgentModel) {
+export function setupAgent (AgentModel) {
   async function createOrUpdate (agent) {
     const cond = {
       where: {

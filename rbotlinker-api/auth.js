@@ -1,6 +1,4 @@
-'use strict'
-
-const jwt = require('jsonwebtoken')
+import jwt from 'jsonwebtoken'
 
 function sign (payload, secret, callback) {
   jwt.sign(payload, secret, callback)

@@ -12,6 +12,7 @@
     "build-dev": "browserify -g envify -t babelify -t vueify client/app.js -o public/bundle.js",
     "lint": "standard"
   },
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mrromo/rbotlinker.git"

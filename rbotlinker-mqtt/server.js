@@ -1,12 +1,8 @@
-'use strict'
-
-const debug = require('debug')('rbotlinker:mqtt')
-const mosca = require('mosca')
-const redis = require('redis')
-const chalk = require('chalk')
-const db = require('rbotlinker-db')
-
-const { parsePayload } = require('./utils')
+import mosca from 'mosca'
+import redis from 'redis'
+import db from 'rbotlinker-db'
+import { parsePayload } from './utils.js'
+import chalk from 'chalk'
 
 const backend = {
   type: 'redis',
@@ -20,26 +16,24 @@ const settings = {
 }
 
 const config = {
-  database: process.env.DB_NAME || 'rbotlinker',
-  username: process.env.DB_USER || 'rbotlinker',
-  password: process.env.DB_PASS || 'rbotlinker',
+  database: process.env.DB_NAME || 'mrromo',
+  username: process.env.DB_USER || 'mrromo',
+  password: process.env.DB_PASS || 'mrromo',
   host: process.env.DB_HOST || 'localhost',
   dialect: 'postgres',
-  logging: s => debug(s)
 }
-
 const server = new mosca.Server(settings)
 const clients = new Map()
 
 let Agent, Metric
 
 server.on('clientConnected', client => {
-  debug(`Client Connected: ${client.id}`)
+  console.log(`Client Connected: ${client.id}`)
   clients.set(client.id, null)
 })
 
 server.on('clientDisconnected', async (client) => {
-  debug(`Client Disconnected: ${client.id}`)
+  console.log(`Client Disconnected: ${client.id}`)
   const agent = clients.get(client.id)
 
   if (agent) {
@@ -63,20 +57,20 @@ server.on('clientDisconnected', async (client) => {
         }
       })
     })
-    debug(`Client (${client.id}) associated to Agent (${agent.uuid}) marked as disconnected`)
+    console.log(`Client (${client.id}) associated to Agent (${agent.uuid}) marked as disconnected`)
   }
 })
 
 server.on('published', async (packet, client) => {
-  debug(`Received: ${packet.topic}`)
+  console.log(`Received: ${packet.topic}`)
 
   switch (packet.topic) {
     case 'agent/connected':
     case 'agent/disconnected':
-      debug(`Payload: ${packet.payload}`)
+      console.log(`Payload: ${packet.payload}`)
       break
     case 'agent/message':
-      debug(`Payload: ${packet.payload}`)
+      console.log(`Payload: ${packet.payload}`)
 
       const payload = parsePayload(packet.payload)
 
@@ -90,7 +84,7 @@ server.on('published', async (packet, client) => {
           return handleError(e)
         }
 
-        debug(`Agent ${agent.uuid} saved`)
+        console.log(`Agent ${agent.uuid} saved`)
 
         // Notify Agent is Connected
         if (!clients.get(client.id)) {
@@ -119,7 +113,7 @@ server.on('published', async (packet, client) => {
             return handleError(e)
           }
 
-          debug(`Metric ${m.id} saved on agent ${agent.uuid}`)
+          console.log(`Metric ${m.id} saved on agent ${agent.uuid}`)
         }
       }
       break
@@ -127,6 +121,7 @@ server.on('published', async (packet, client) => {
 })
 
 server.on('ready', async () => {
+  console.log('rbotlinker-mqtt server is running');
   const services = await db(config).catch(handleFatalError)
 
   Agent = services.Agent

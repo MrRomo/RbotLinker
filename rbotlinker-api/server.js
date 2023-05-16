@@ -1,12 +1,8 @@
-'use strict'
-
-const debug = require('debug')('rbotlinker:api')
-const http = require('http')
-const chalk = require('chalk')
-const express = require('express')
-const asyncify = require('express-asyncify')
-
-const api = require('./api')
+import chalk from 'chalk'
+import express from 'express'
+import asyncify from 'express-asyncify'
+import http from 'http'
+import api from './api.js'
 
 const port = process.env.PORT || 3000
 const app = asyncify(express())
@@ -16,7 +12,7 @@ app.use('/api', api)
 
 // Express Error Handler
 app.use((err, req, res, next) => {
-  debug(`Error: ${err.message}`)
+  console.log(`Error: ${err.message}`)
 
   if (err.message.match(/not found/)) {
     return res.status(404).send({ error: err.message })
@@ -25,19 +21,16 @@ app.use((err, req, res, next) => {
   res.status(500).send({ error: err.message })
 })
 
-function handleFatalError (err) {
+function handleFatalError(err) {
   console.error(`${chalk.red('[fatal error]')} ${err.message}`)
   console.error(err.stack)
   process.exit(1)
 }
 
-if (!module.parent) {
-  process.on('uncaughtException', handleFatalError)
-  process.on('unhandledRejection', handleFatalError)
+process.on('uncaughtException', handleFatalError)
+process.on('unhandledRejection', handleFatalError)
 
-  server.listen(port, () => {
-    console.log(`${chalk.green('[rbotlinker-api]')} server listening on port ${port}`)
-  })
-}
+server.listen(port, () => {
+  console.log(`${chalk.green('[rbotlinker-api]')} server listening on port ${port}`)
+})
 
-module.exports = server

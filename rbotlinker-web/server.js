@@ -1,17 +1,14 @@
-'use strict'
+import http from 'http'
+import path from 'path'
+import express from 'express'
+import asyncify from 'express-asyncify'
+import socketio from 'socket.io'
+import chalk from 'chalk'
+import RbotlinkerAgent from 'rbotlinker-agent'
+import {fileURLToPath} from 'url';
 
-const debug = require('debug')('rbotlinker:web')
-const http = require('http')
-const path = require('path')
-const express = require('express')
-const asyncify = require('express-asyncify')
-const socketio = require('socket.io')
-const chalk = require('chalk')
-const RbotlinkerAgent = require('rbotlinker-agent')
-
-const proxy = require('./proxy')
-const { pipe } = require('./utils')
-const { mqttHost } = require('./config')
+import proxy from './proxy.js'
+import { pipe } from './utils.js'
 
 const port = process.env.PORT || 8080
 const app = asyncify(express())
@@ -19,19 +16,21 @@ const server = http.createServer(app)
 const io = socketio(server)
 const agent = new RbotlinkerAgent()
 
-app.use(express.static(path.join(__dirname, 'public')))
+const __filename = fileURLToPath(import.meta.url);
+
+app.use(express.static(path.join(path.dirname(__filename), 'public')))
 app.use('/', proxy)
 
 // Socket.io / WebSockets
 io.on('connect', socket => {
-  debug(`Connected ${socket.id}`)
+  console.log(`Connected ${socket.id}`)
 
   pipe(agent, socket)
 })
 
 // Express Error Handler
 app.use((err, req, res, next) => {
-  debug(`Error: ${err.message}`)
+  console.log(`Error: ${err.message}`)
 
   if (err.message.match(/not found/)) {
     return res.status(404).send({ error: err.message })
@@ -40,7 +39,7 @@ app.use((err, req, res, next) => {
   res.status(500).send({ error: err.message })
 })
 
-function handleFatalError (err) {
+function handleFatalError(err) {
   console.error(`${chalk.red('[fatal error]')} ${err.message}`)
   console.error(err.stack)
   process.exit(1)

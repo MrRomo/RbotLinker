@@ -1,10 +1,8 @@
-'use strict'
+import express from 'express'
+import asyncify from 'express-asyncify'
+import request from 'request-promise-native'
 
-const express = require('express')
-const asyncify = require('express-asyncify')
-const request = require('request-promise-native')
-
-const { endpoint, apiToken } = require('./config')
+import { endpoint, apiToken } from './config.js'
 
 const api = asyncify(express.Router())
 
@@ -91,4 +89,4 @@ api.get('/metrics/:uuid/:type', async (req, res, next) => {
   res.send(result)
 })
 
-module.exports = api
+export default api

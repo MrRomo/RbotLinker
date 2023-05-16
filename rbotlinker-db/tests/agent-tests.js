@@ -1,13 +1,9 @@
-'use strict'
-
-const test = require('ava')
-const sinon = require('sinon')
-const proxyquire = require('proxyquire')
-
-const agentFixtures = require('./fixtures/agent')
+import test from 'ava'
+import proxyquire from 'proxyquire'
+import agentFixtures from './fixtures/agent.js'
 
 let config = {
-  logging () {}
+  logging() { }
 }
 
 let MetricStub = {
@@ -50,10 +46,10 @@ test.beforeEach(async () => {
     hasMany: sandbox.spy()
   }
 
-// Model create Stub
+  // Model create Stub
   AgentStub.create = sandbox.stub()
   AgentStub.create.withArgs(newAgent).returns(Promise.resolve({
-    toJSON () { return newAgent }
+    toJSON() { return newAgent }
   }))
 
   // Model update Stub
