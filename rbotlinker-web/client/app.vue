@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="dashboard">
     <agent
       v-for="agent in agents"
       :uuid="agent.uuid"
@@ -15,6 +15,9 @@
     font-family: Arial;
     background: #f8f8f8;
     margin: 0;
+  }
+  .dashboard {
+    display: flex;
   }
 </style>
 

@@ -46,7 +46,7 @@
     background: white;
     padding: 20px;
     font-family: 'Roboto', sans-serif;
-    margin: 24px 15px;
+    margin: 20px 15px;
     box-shadow: 0 1px 3px 0 rgba(165, 165, 165, 0.2), 0 2px 2px 0 rgba(163, 137, 137, 0.12), 0 0 2px 0 rgba(0, 0, 0, 0.14);
   }
   .agent-title {
@@ -86,7 +86,7 @@ module.exports = {
       hostname: null,
       connected: false,
       pid: null,
-      showMetrics: false,
+      showMetrics: true,
       error: null,
       metrics: []
     }

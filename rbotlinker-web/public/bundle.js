@@ -1,5 +1,5 @@
 (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
-var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert(".metrics-title {\n  text-align: center;\n  font-size: 28px;\n  letter-spacing: 1px;\n  font-family: 'Monserrat', sans-serif;\n}\n.button {\n  text-transform: uppercase;\n  color: #ff7a22;\n  border: none;\n  background: none;\n  font-size: 14px;\n  font-weight: 900;\n  cursor: pointer;\n  outline: 0;\n  padding: 0;\n  font-family: 'Roboto', sans-serif;\n}\n.agent {\n  max-width: 850px;\n  box-sizing: border-box;\n  border-radius: 4px;\n  background: white;\n  padding: 20px;\n  font-family: 'Roboto', sans-serif;\n  margin: 24px 15px;\n  box-shadow: 0 1px 3px 0 rgba(165, 165, 165, 0.2), 0 2px 2px 0 rgba(163, 137, 137, 0.12), 0 0 2px 0 rgba(0, 0, 0, 0.14);\n}\n.agent-title {\n  font-size: 32px;\n  letter-spacing: 1px;\n  margin: 0;\n  font-family: 'Monserrat', sans-serif;\n}\n.agent-host {\n  font-size: 20px;\n}\n.agent-status {\n  font-size: 20px\n}\n.agent-status span {\n  font-weight: bold;\n  color: #ff7a22;\n}\n@media screen and (min-width: 850px) {\n  .agent {\n    padding: 20px 85px;\n    margin: 24px auto;\n  }\n}")
+var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert(".metrics-title {\n  text-align: center;\n  font-size: 28px;\n  letter-spacing: 1px;\n  font-family: 'Monserrat', sans-serif;\n}\n.button {\n  text-transform: uppercase;\n  color: #ff7a22;\n  border: none;\n  background: none;\n  font-size: 14px;\n  font-weight: 900;\n  cursor: pointer;\n  outline: 0;\n  padding: 0;\n  font-family: 'Roboto', sans-serif;\n}\n.agent {\n  max-width: 850px;\n  box-sizing: border-box;\n  border-radius: 4px;\n  background: white;\n  padding: 20px;\n  font-family: 'Roboto', sans-serif;\n  margin: 20px 15px;\n  box-shadow: 0 1px 3px 0 rgba(165, 165, 165, 0.2), 0 2px 2px 0 rgba(163, 137, 137, 0.12), 0 0 2px 0 rgba(0, 0, 0, 0.14);\n}\n.agent-title {\n  font-size: 32px;\n  letter-spacing: 1px;\n  margin: 0;\n  font-family: 'Monserrat', sans-serif;\n}\n.agent-host {\n  font-size: 20px;\n}\n.agent-status {\n  font-size: 20px\n}\n.agent-status span {\n  font-weight: bold;\n  color: #ff7a22;\n}\n@media screen and (min-width: 850px) {\n  .agent {\n    padding: 20px 85px;\n    margin: 24px auto;\n  }\n}")
 ;(function(){
 'use strict';
 
@@ -27,7 +27,7 @@ module.exports = {
       hostname: null,
       connected: false,
       pid: null,
-      showMetrics: false,
+      showMetrics: true,
       error: null,
       metrics: []
     };
@@ -201,7 +201,7 @@ var vm = new _vue2.default({
 });
 
 },{"./agent.vue":1,"./app.vue":3,"./metric.vue":5,"vue":546}],3:[function(require,module,exports){
-var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert("body {\n  font-family: Arial;\n  background: #f8f8f8;\n  margin: 0;\n}")
+var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert("body {\n  font-family: Arial;\n  background: #f8f8f8;\n  margin: 0;\n}\n.dashboard {\n  display: flex;\n}")
 ;(function(){
 'use strict';
 
@@ -307,7 +307,7 @@ module.exports = {
 if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_vm._l((_vm.agents),function(agent){return _c('agent',{key:agent.uuid,attrs:{"uuid":agent.uuid,"socket":_vm.socket}})}),_vm._v(" "),(_vm.error)?_c('p',[_vm._v(_vm._s(_vm.error))]):_vm._e()],2)}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"dashboard"},[_vm._l((_vm.agents),function(agent){return _c('agent',{key:agent.uuid,attrs:{"uuid":agent.uuid,"socket":_vm.socket}})}),_vm._v(" "),(_vm.error)?_c('p',[_vm._v(_vm._s(_vm.error))]):_vm._e()],2)}
 __vue__options__.staticRenderFns = []
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -517,7 +517,7 @@ Object.defineProperty(exports, "__esModule", {
 var endpoint = exports.endpoint = process.env.API_ENDPOINT || 'http://localhost:3000';
 var serverHost = exports.serverHost = process.env.SERVER_HOST || 'http://localhost:8080';
 var mqttHost = exports.mqttHost = process.env.MQTT_HOST || 'mqtt://localhost';
-var apiToken = exports.apiToken = process.env.API_TOKEN || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJib3RsaW5rZXIiLCJhZG1pbiI6dHJ1ZSwicGVybWlzc2lvbnMiOlsibWV0cmljczpyZWFkIl0sImlhdCI6MTUwMjM5MzQxMX0.dNP2RJQMsEwH6UKphRrwmebHpnwlaaMJLH5_MloSNjA';
+var apiToken = exports.apiToken = process.env.API_TOKEN || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJib3RsaW5rZXIiLCJhZG1pbiI6dHJ1ZSwicGVybWlzc2lvbnMiOlsibWV0cmljczpyZWFkIl0sImlhdCI6MTUwMjM5MzQxMX0.dPNKAmjRinozigJo7-DpFcBFvP6aPCcDWfaHVN8AQhQ';
 
 }).call(this)}).call(this,require('_process'))
 },{"_process":405}],7:[function(require,module,exports){
